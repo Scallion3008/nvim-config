@@ -6,7 +6,8 @@
 local M = {}
 
 M.base46 = {
-	theme = "onedark",
+  -- candidates: nightowl, gatekeeper, everblush, chadracula-evondev, oxocarbon
+	theme = "oxocarbon",
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
