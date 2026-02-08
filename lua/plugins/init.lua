@@ -27,6 +27,16 @@ return {
   -- { import = "nvchad.blink.lazyspec" },
 
   {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      filters = {
+        dotfiles = false,
+        git_ignored = false,
+      },
+    },
+  },
+
+  {
     "nvim-treesitter/nvim-treesitter",
     lazy = false,
     opts = {
