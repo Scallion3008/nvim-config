@@ -149,4 +149,40 @@ return {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
     },
   },
+
+  {
+    "erichlf/devcontainer-cli.nvim",
+    dependencies = { "akinsho/toggleterm.nvim" },
+    init = function()
+      require("devcontainer-cli").setup {
+        interactive = false,
+        toplevel = true,
+        remove_existing_container = true,
+
+        -- TODO: create an *actual* dotfiles repo containing more than just nvim config
+        dotfiles_repository = "https://github.com/Scallion3008/nvim-config.git",
+        dotfiles_branch = "main",
+        dotfiles_targetPath = "~/.config/nvim",
+        dotfiles_installCommand = nil,
+
+        shell = "bash",
+        nvim_binary = "nvim",
+        log_level = "debug",
+        console_level = "info",
+      }
+    end,
+    keys = {
+      { "<leader>Du", ":DevcontainerUp<CR>", desc = "DevContainer: up" },
+      { "<leader>Dc", ":DevcontainerConnect<CR>", desc = "DevContainer: connect" },
+      { "<leader>Dd", ":DevcontainerDown<CR>", desc = "DevContainer: down" },
+      { "<leader>De", ":DevcontainerExec direction='vertical' size='40'<CR>", desc = "DevContainer: exec (vsplit)" },
+      { "<leader>Db", ":DevcontainerExec cmd='cd build && make'<CR>", desc = "DevContainer: build" },
+      {
+        "<leader>Dt",
+        ":DevcontainerExec cmd='cd build && make test' direction='horizontal'<CR>",
+        desc = "DevContainer: test",
+      },
+      { "<leader>DT", "<CMD>DevContainerToggle<CR>", desc = "DevContainer: toggle term" },
+    },
+  },
 }
