@@ -23,8 +23,28 @@ return {
     },
   },
 
-  -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    },
+    opts = {
+      defaults = {
+        vimgrep_arguments = {
+          "rg",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+          "--hidden",
+          "--no-ignore",
+        },
+      },
+    },
+  },
 
   {
     "nvim-tree/nvim-tree.lua",
@@ -47,6 +67,7 @@ return {
         "html",
         "css",
         "rust",
+        "json",
       },
     },
   },
@@ -155,16 +176,14 @@ return {
     dependencies = { "akinsho/toggleterm.nvim" },
     init = function()
       require("devcontainer-cli").setup {
+        -- only the most useful options shown; see full config below
         interactive = false,
         toplevel = true,
         remove_existing_container = true,
-
-        -- TODO: create an *actual* dotfiles repo containing more than just nvim config
         dotfiles_repository = "https://github.com/Scallion3008/nvim-config.git",
         dotfiles_branch = "main",
         dotfiles_targetPath = "~/.config/nvim",
-        dotfiles_installCommand = nil,
-
+        dotfiles_installCommand = "",
         shell = "bash",
         nvim_binary = "nvim",
         log_level = "debug",
@@ -184,5 +203,10 @@ return {
       },
       { "<leader>DT", "<CMD>DevContainerToggle<CR>", desc = "DevContainer: toggle term" },
     },
+  },
+
+  {
+    "github/copilot.vim",
+    lazy = false,
   },
 }
