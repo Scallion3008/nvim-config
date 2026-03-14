@@ -81,4 +81,3 @@ vim.api.nvim_create_autocmd({'BufEnter', 'QuitPre'}, {
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false
-

@@ -5,7 +5,20 @@ return {
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
+  {
+    "hrsh7th/nvim-cmp",
+    opts = {
+      sources = {
+        { name = "copilot" },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "nvim_lua" },
+        { name = "async_path" },
+      },
+    },
+  },
+
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -206,7 +219,22 @@ return {
   },
 
   {
-    "github/copilot.vim",
+    {
+      "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      event = "InsertEnter",
+      opts = {
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      },
+    },
+  },
+
+  {
+    "zbirenbaum/copilot-cmp",
     lazy = false,
+    config = function()
+      require("copilot_cmp").setup()
+    end,
   },
 }
